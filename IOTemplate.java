@@ -1,12 +1,13 @@
 import java.io.*;
 public class IOTemplate {
-    public static void main(String args[]) {
+    
+    public static void copy(String from, String to) {
         FileReader in = null;
         FileWriter out = null;
 
         try {
-            in = new FileReader("input.txt");
-            out = new FileWriter("output.txt");
+            in = new FileReader(from);
+            out = new FileWriter(to);
 
             int c;
             while ((c = in.read()) != -1) {
@@ -33,10 +34,17 @@ public class IOTemplate {
 
     public static void getFiles(String path) {
         // https://stackoverflow.com/questions/2056221/recursively-list-files-in-java
+        Files.walk(Paths.get(path)).filter(Files::isRegularFile).forEach(System.out::println);
+        // Stream operation https://www.geeksforgeeks.org/stream-in-java/
     }
     
     public static void mkdir(String path) {
+        if (path == null) return;
 
+        File d = new File(path);
+        // mkdir creates a directory, return true on success and false. 
+        //mkdirs creates both a directory and all the parents of the directory
+        d.mkdirs(); 
     }
 
     public static void ls (String pwd) {
