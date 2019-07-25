@@ -24,14 +24,36 @@ public class IOTemplate {
         }
     }
 
-    public static String getPath(String file) {
-        File inputfile = new File(file);
+    public static String getPath(String path) {
+        File inputfile = new File(path);
         String inputPath = inputFile.getAbsolutePath();
         System.out.println("dataset path: " + inputPath);
         return inputPath;
     }
 
-    public static void getFiles(String file) {
+    public static void getFiles(String path) {
         // https://stackoverflow.com/questions/2056221/recursively-list-files-in-java
+    }
+    
+    public static void mkdir(String path) {
+
+    }
+
+    public static void ls (String pwd) {
+        File file = null;
+        String[] paths;
+
+        if (pwd == null) return;
+
+        try {
+            file = new File(pwd);
+            paths = file.list();
+
+            for(String path:paths) {
+                System.out.println(path);
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }
